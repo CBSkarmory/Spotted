@@ -8,9 +8,9 @@
     "version": "0.0.2",
     "orientation": "portrait",
     "primaryColor": "#0032ff",
-    "icon": "./assets/icons/dickbutt2.png",
+    "icon": "./assets/icons/spotted.png",
     "loading": {
-      "icon": "./assets/icons/dickbutt2.png",
+      "icon": "./assets/icons/spotted.png",
       "hideExponentText": false
     },
     "packagerOpts": {
