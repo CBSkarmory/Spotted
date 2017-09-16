@@ -1,6 +1,6 @@
 import React from "react";
 import { Asset, AppLoading, MapView, Location, Permissions } from "expo";
-import { StyleSheet, Text, View, Alert } from "react-native";
+import { StyleSheet, Text, View, Alert, Image } from "react-native";
 import ActionButton from "react-native-action-button";
 import { Ionicons as Icon } from "@expo/vector-icons";
 import moment from "moment";
@@ -154,6 +154,7 @@ export default class App extends React.Component {
               coordinate={marker.latlng}
               title={marker.title}
               description={marker.description}
+              image={require("./assets/homeless.png")}
             />
           ))}
         </MapView>
