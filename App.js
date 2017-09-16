@@ -90,6 +90,7 @@ export default class App extends React.Component {
               onCalloutPress={() => {
                 Alert.alert(
                   "Do you see any homeless individuals?",
+                  "temp desc",
                   [
                     {
                       text: "Yes",
