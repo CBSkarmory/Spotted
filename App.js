@@ -50,7 +50,7 @@ export default class App extends React.Component {
         id
       }));
 
-      setState({ locations });
+      setState(prevState => ({ ...prevState, locations }));
     });
   }
 
@@ -113,6 +113,10 @@ export default class App extends React.Component {
       });
   };
 
+  onRegionChange = region => {
+    this.setState({ region });
+  };
+
   render() {
     if (!this.state.isReady) {
       return <AppLoading />;
@@ -120,6 +124,7 @@ export default class App extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <MapView
+          provider={MapView.PROVIDER_GOOGLE}
           style={{ flex: 1 }}
           followsUserLocation
           region={this.state.region}
