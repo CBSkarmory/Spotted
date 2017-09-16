@@ -60,7 +60,8 @@ export default class App extends React.Component {
                         latlng: {
                             ...location.coords
                         },
-                        title: "Homeless Individual Spotted"
+                        title: "Homeless Individual Spotted",
+                        timestamp: moment()
                     }
                 ]
             };
