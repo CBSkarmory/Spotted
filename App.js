@@ -109,6 +109,7 @@ export default class App extends React.Component {
         timestamp: moment()
           .utc()
           .toString(),
+        votes: 3,
         description: "Last Seen: " + moment().format("h:mm a, MMMM Do YYYY")
       });
   };
@@ -131,7 +132,7 @@ export default class App extends React.Component {
           showsUserLocation
           onRegionChange={this.onRegionChange}
         >
-          {this.state.locations.map((marker, i) => (
+          {this.state.locations.filter(m => m.votes > 0).map((marker, i) => (
             <MapView.Marker
               key={i}
               onCalloutPress={() => {
@@ -141,11 +142,21 @@ export default class App extends React.Component {
                   [
                     {
                       text: "Yes",
-                      onPress: () => console.log("Updated")
+                      onPress: () => {
+                        firebase
+                          .database()
+                          .ref("points/" + marker.id)
+                          .update({ votes: marker.votes + 1 });
+                      }
                     },
                     {
                       text: "No",
-                      onPress: () => console.log("Updated")
+                      onPress: () => {
+                        firebase
+                          .database()
+                          .ref("points/" + marker.id)
+                          .update({ votes: marker.votes - 1 });
+                      }
                     }
                   ],
                   { cancelable: true }
