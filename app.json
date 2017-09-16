@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "rn-tut",
-    "description": "An empty new project",
+    "name": "spotted",
+    "description": "spotting",
     "slug": "rn-tut",
     "privacy": "public",
     "sdkVersion": "20.0.0",
-    "version": "1.0.0",
+    "version": "0.0.2",
     "orientation": "portrait",
-    "primaryColor": "#cccccc",
+    "primaryColor": "#0032ff",
     "icon": "./assets/icons/app-icon.png",
     "loading": {
       "icon": "./assets/icons/loading-icon.png",
