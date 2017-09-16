@@ -1,4 +1,5 @@
 import React from "react";
+import expo from "expo";
 import { MapView, Location, Permissions } from "expo";
 import { StyleSheet, Text, View } from "react-native";
 import ActionButton from "react-native-action-button";
