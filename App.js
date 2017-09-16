@@ -5,32 +5,46 @@ import ActionButton from "react-native-action-button";
 import { Ionicons as Icon } from "@expo/vector-icons";
 
 export default class App extends React.Component {
+  componentWillMount() {
+    const setState = this.setState.bind(this);
+    const forceUpdate = this.forceUpdate.bind(this);
+    Permissions.askAsync(Permissions.LOCATION).then(({ status }) => {
+      if (status !== "granted") {
+        setState({
+          errorMessage: "Permission to access location was denied"
+        });
+      }
+      Location.getCurrentPositionAsync({}).then(location => {
+        setState(prevState => {
+          return {
+            ...prevState,
+            region: {
+              ...prevState.region,
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude
+            }
+          };
+        });
+        setTimeout(forceUpdate, 500);
+      });
+    });
+  }
+
   state = {
-    locations: [
-      {
-        latlng: {
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        },
-        title: "Homeless",
-        description: "this homeless person needs help",
-      },
-    ],
+    locations: [],
     region: {
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    },
+      latitude: 40,
+      longitude: -100,
+      latitudeDelta: 0.003,
+      longitudeDelta: 0.003
+    }
   };
 
   setLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== "granted") {
       this.setState({
-        errorMessage: "Permission to access location was denied",
+        errorMessage: "Permission to access location was denied"
       });
     }
 
@@ -43,12 +57,11 @@ export default class App extends React.Component {
           ...prevState.locations,
           {
             latlng: {
-              ...location.coords,
+              ...location.coords
             },
-            title: "Another Homeless",
-            description: "another homeless person needs help",
-          },
-        ],
+            title: "Homeless Individual Spotted"
+          }
+        ]
       };
     });
   };
@@ -91,6 +104,6 @@ const styles = StyleSheet.create({
   actionButtonIcon: {
     fontSize: 20,
     height: 22,
-    color: "white",
-  },
+    color: "white"
+  }
 });
