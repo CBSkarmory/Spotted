@@ -8,9 +8,9 @@
     "version": "0.0.2",
     "orientation": "portrait",
     "primaryColor": "#0032ff",
-    "icon": "./assets/icons/spotted.png",
+    "icon": "./assets/icons/app-icon.png",
     "loading": {
-      "icon": "./assets/icons/spotted.png",
+      "icon": "./assets/icons/loading-icon.png",
       "hideExponentText": false
     },
     "packagerOpts": {
