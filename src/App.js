@@ -4,18 +4,6 @@ import { StyleSheet, Text, View, Alert } from "react-native";
 import ActionButton from "react-native-action-button";
 import { Ionicons as Icon } from "@expo/vector-icons";
 import moment from "moment";
-import * as firebase from "firebase";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDkfKyr35WDut2cvtDfYUyzgWTOBcEmr0g",
-  authDomain: "homiez-267cc.firebaseapp.com",
-  databaseURL: "https://homiez-267cc.firebaseio.com",
-  projectId: "homiez-267cc",
-  storageBucket: "homiez-267cc.appspot.com",
-  messagingSenderId: "652416293785"
-};
-
-firebase.initalizeApp(firebaseConfig);
 
 export default class App extends React.Component {
   componentWillMount() {
