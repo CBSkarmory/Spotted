@@ -64,7 +64,7 @@ export default class App extends React.Component {
                         },
                         title: "Homeless Individual Spotted",
                         timestamp: moment(),
-                        description: "Last Seen: " + moment().format("MMMM Do YYYY, h:mm:ss a")
+                        description: "Last Seen: " + moment().format("h:mm a, MMMM Do YYYY")
                     }
                 ]
             };
