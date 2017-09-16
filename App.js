@@ -125,7 +125,6 @@ export default class App extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <MapView
-          provider={MapView.PROVIDER_GOOGLE}
           style={{ flex: 1 }}
           followsUserLocation
           region={this.state.region}
@@ -146,7 +145,15 @@ export default class App extends React.Component {
                         firebase
                           .database()
                           .ref("points/" + marker.id)
-                          .update({ votes: marker.votes + 1 });
+                          .update({
+                            votes: marker.votes + 1,
+                            timestamp: moment()
+                              .utc()
+                              .toString(),
+                            description:
+                              "Last Seen: " +
+                              moment().format("h:mm a, MMMM Do YYYY")
+                          });
                       }
                     },
                     {
