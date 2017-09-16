@@ -1,12 +1,12 @@
 import React from "react";
-import expo from "expo";
-import { MapView, Location, Permissions } from "expo";
+import { Asset, AppLoading, MapView, Location, Permissions } from "expo";
 import { StyleSheet, Text, View } from "react-native";
 import ActionButton from "react-native-action-button";
 import { Ionicons as Icon } from "@expo/vector-icons";
 
 export default class App extends React.Component {
   componentWillMount() {
+    this.loadingScreen();
     const setState = this.setState.bind(this);
     const forceUpdate = this.forceUpdate.bind(this);
     Permissions.askAsync(Permissions.LOCATION).then(({ status }) => {
@@ -14,6 +14,8 @@ export default class App extends React.Component {
         setState({
           errorMessage: "Permission to access location was denied"
         });
+      } else if (!this.state.isReady) {
+        return <AppLoading />;
       }
       Location.getCurrentPositionAsync({}).then(location => {
         setState(prevState => {
@@ -38,7 +40,8 @@ export default class App extends React.Component {
       longitude: -100,
       latitudeDelta: 0.003,
       longitudeDelta: 0.003
-    }
+    },
+    isReady: false
   };
 
   setLocationAsync = async () => {
@@ -67,7 +70,20 @@ export default class App extends React.Component {
     });
   };
 
+  async loadingScreen() {
+    const images = [require("./assets/icons/dickbutt2.png")];
+
+    for (let image of images) {
+      await Asset.fromModule(image).downloadAsync();
+    }
+
+    this.setState({ isReady: true });
+  }
+
   render() {
+    if (!this.state.isReady) {
+      return <AppLoading />;
+    }
     return (
       <View style={{ flex: 1 }}>
         <MapView
