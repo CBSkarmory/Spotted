@@ -4,10 +4,21 @@ import { StyleSheet, Text, View, Alert } from "react-native";
 import ActionButton from "react-native-action-button";
 import { Ionicons as Icon } from "@expo/vector-icons";
 import moment from "moment";
-const firebase = require("./src/firebase");
+import * as firebase from "firebase";
+import _ from "lodash";
 
 export default class App extends React.Component {
   componentWillMount() {
+    const firebaseConfig = {
+      apiKey: "AIzaSyDkfKyr35WDut2cvtDfYUyzgWTOBcEmr0g",
+      authDomain: "homiez-267cc.firebaseapp.com",
+      databaseURL: "https://homiez-267cc.firebaseio.com",
+      projectId: "homiez-267cc",
+      storageBucket: "homiez-267cc.appspot.com",
+      messagingSenderId: "652416293785"
+    };
+
+    firebase.initializeApp(firebaseConfig);
     const setState = this.setState.bind(this);
     const forceUpdate = this.forceUpdate.bind(this);
     Permissions.askAsync(Permissions.LOCATION).then(({ status }) => {
@@ -30,6 +41,16 @@ export default class App extends React.Component {
         });
         setTimeout(forceUpdate, 500);
       });
+    });
+
+    const pointsRef = firebase.database().ref("points/");
+    pointsRef.on("value", function(snapshot) {
+      const locations = _.map(snapshot.val() || {}, (location, id) => ({
+        ...location,
+        id
+      }));
+
+      setState({ locations });
     });
   }
 
@@ -64,12 +85,32 @@ export default class App extends React.Component {
               ...location.coords
             },
             title: "Homeless Individual Spotted",
-            timestamp: moment(),
-            description: "Last Seen: " + moment().format("h:mm a, MMMM Do YYYY")
+            timestamp: moment()
+              .utc()
+              .toString(),
+            description:
+              "Last Seen: " +
+              moment()
+                .format("h:mm a, MMMM Do YYYY")
+                .toString()
           }
         ]
       };
     });
+
+    firebase
+      .database()
+      .ref("points/")
+      .push({
+        latlng: {
+          ...location.coords
+        },
+        title: "Homeless Individual Spotted",
+        timestamp: moment()
+          .utc()
+          .toString(),
+        description: "Last Seen: " + moment().format("h:mm a, MMMM Do YYYY")
+      });
   };
 
   render() {
