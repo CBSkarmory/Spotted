@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Alert } from "react-native";
 import ActionButton from "react-native-action-button";
 import { Ionicons as Icon } from "@expo/vector-icons";
 import moment from "moment";
+const firebase = require("./src/firebase");
 
 export default class App extends React.Component {
   componentWillMount() {
