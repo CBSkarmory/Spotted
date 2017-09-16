@@ -2,7 +2,7 @@ import * as firebase from "firebase";
 
 export function initDB() {
   const firebaseConfig = {
-    apiKey: "AIzaSyDkfKyr35WDut2cvtDfYUyzgWTOBcEmr0g",
+    apiKey: process.env.API_KEY,
     authDomain: "homiez-267cc.firebaseapp.com",
     databaseURL: "https://homiez-267cc.firebaseio.com",
     projectId: "homiez-267cc",
