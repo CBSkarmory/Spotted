@@ -2,7 +2,7 @@
 
 ### Connecting Streets to Shelters
 
-Spotted is a realtime, cross-platform, crowdsoucing application which utilizes geolocation to help connect community 
+Spotted is a real-time, cross-platform, crowdsoucing application which utilizes geolocation to help connect community 
 outreach organizations to homeless people. Spotted agregates anonymous user inputs to identify areas in need of support.
 
 To install, download Expo ([Google Play](https://play.google.com/store/apps/details?id=host.exp.exponent) /
