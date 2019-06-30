@@ -1,5 +1,8 @@
 # ![Spotted](https://github.com/CBSkarmory/Spotted/blob/master/assets/icons/spotted.PNG)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+![Database: locked](https://img.shields.io/badge/Database-Locked-red.svg)
+
+Database currently locked for security reasons
 
 ### Connecting Streets to Shelters
 
