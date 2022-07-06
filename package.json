@@ -9,7 +9,7 @@
     "expo": "^20.0.0",
     "firebase": "^7.14.0",
     "lodash": "^4.17.19",
-    "moment": "^2.22.0",
+    "moment": "^2.29.4",
     "react": "^16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-20.0.0.tar.gz",
     "react-native-action-button": "^2.8.0"
